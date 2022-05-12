@@ -1,5 +1,6 @@
 package com.kruczala.michal;
 
+import com.kruczala.michal.exceptions.DivideByZeroIsWrongException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,18 +33,17 @@ public class DivideTest {
     }
 
     @Test
-    public void divideByZero() {
+    public void divideByZero() throws DivideByZeroIsWrongException {
         AdvanceCalculator advancedCalculator = new AdvanceCalculator();
         int firstNumber = 6;
         int secondNumber = 0;
-        Assertions.assertThrows(ArithmeticException.class, () -> advancedCalculator.divide(firstNumber, secondNumber));
-        //TODO zmienic to tak, zeby zrzucany byl wyjatek DivideByZeroIsWrongException
+        throw new DivideByZeroIsWrongException();
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1:1:1", "2:2:1"}, delimiter = ':')
-    public void parameterizedDivideTest(String firsNumber, String secondNumber, String expectedValue) {
-        int first = Integer.valueOf(firsNumber);
+    public void parameterizedDivideTest(String firstNumber, String secondNumber, String expectedValue) {
+        int first = Integer.valueOf(firstNumber);
         int second = Integer.valueOf(secondNumber);
         int expected = Integer.valueOf(expectedValue);
         AdvanceCalculator advancedCalculator = new AdvanceCalculator();
@@ -55,8 +55,8 @@ public class DivideTest {
     @ParameterizedTest
     @MethodSource("methodSourceForDivide")
     public void parameterizetDivideWithMethodSourceTest(int firstNumber, int secondNumber, int expectedValue){
-        AdvanceCalculator advancedCalculator = new AdvanceCalculator();
-        int result = advancedCalculator.divide(firstNumber, secondNumber);
+        AdvanceCalculator advanceCalculator = new AdvanceCalculator();
+        int result = advanceCalculator.divide(firstNumber, secondNumber);
         Assertions.assertEquals(expectedValue, result);
         //TODO zmodyfikowac tak, zeby testowal wiecej mozliwosci
     }

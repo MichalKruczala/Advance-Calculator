@@ -20,6 +20,11 @@ public class AdvanceCalculator {
 
     public int divide(int firstNumber, int secondNumber) {
 
-        return firstNumber/secondNumber;
+        return firstNumber / secondNumber;
+    }
+
+    public double squareRoot(double numberToSquareRoot) {
+        double resultOfSquareRoot = Math.sqrt(numberToSquareRoot);
+        return resultOfSquareRoot;
     }
 }
