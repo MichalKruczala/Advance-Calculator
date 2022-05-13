@@ -24,12 +24,12 @@ public class SquareRootTest {
     }
 
     @Test
-    public void SquareRootByNegativeNumber() {
+    public void C() {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         double numberToSquareRoot = -9;
         advanceCalculator.squareRoot(numberToSquareRoot);
         throw new IllegalArgumentException("Square Root from negative number does not exist");
-        // nie przechodzi mi ten test dalej...:
+        // nie przechodzi mi ten test dalej....jak to zrobić?:
     }
 
     @Test
