@@ -37,7 +37,10 @@ public class DivideTest {
         AdvanceCalculator advancedCalculator = new AdvanceCalculator();
         int firstNumber = 6;
         int secondNumber = 0;
+        double resultOfDivide = advancedCalculator.divide(firstNumber,secondNumber);
+        Assertions.assertEquals(Double.NaN,resultOfDivide);
         throw new DivideByZeroIsWrongException();
+        // jakby to zrobić Zeby test przechodził?
     }
 
     @ParameterizedTest
@@ -58,13 +61,18 @@ public class DivideTest {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         int result = advanceCalculator.divide(firstNumber, secondNumber);
         Assertions.assertEquals(expectedValue, result);
-        //TODO zmodyfikowac tak, zeby testowal wiecej mozliwosci
     }
 
     private static Stream<Arguments> methodSourceForDivide(){
         return Stream.of(
                 Arguments.of(1,1,1),
-                Arguments.of(2,2,1)
+                Arguments.of(2,2,1),
+                Arguments.of(9,3,3),
+                Arguments.of(3,9,3/9),
+                Arguments.of(-4,2,-2),
+                Arguments.of(-222,-222,1),
+                Arguments.of(-66,1,-66),
+                Arguments.of(56,9,6)
         );
     }
 

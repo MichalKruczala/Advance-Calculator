@@ -1,6 +1,5 @@
 package com.kruczala.michal;
 
-import com.kruczala.michal.exceptions.SquareRootByNegativeNumberIsWrong;
 import com.kruczala.michal.exceptions.SquareRootByStringIsWrong;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,17 +24,20 @@ public class SquareRootTest {
     }
 
     @Test
-    public void SquareRootByNegativeNumber() throws SquareRootByNegativeNumberIsWrong {
+    public void SquareRootByNegativeNumber() {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         double numberToSquareRoot = -9;
-        double resultOfSquareRoot = advanceCalculator.squareRoot(numberToSquareRoot);
-        throw new SquareRootByNegativeNumberIsWrong("Do not square root by negative number", resultOfSquareRoot);
-        // nie przechodzi mi ten test :/
+        advanceCalculator.squareRoot(numberToSquareRoot);
+        throw new IllegalArgumentException("Square Root from negative number does not exist");
+        // nie przechodzi mi ten test dalej...:
     }
 
     @Test
-    public void SquareRootByString() throws SquareRootByStringIsWrong {
+    public double SquareRootByString() throws SquareRootByStringIsWrong {
+        AdvanceCalculator advanceCalculator =new AdvanceCalculator();
+        //advanceCalculator.squareRoot();
         String word = "ble ble";
+
         throw new SquareRootByStringIsWrong(word);
         //mam dostarczyć double a przetestować mam Stringa,jak tnapisac ten test?
 

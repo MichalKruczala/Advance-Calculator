@@ -24,7 +24,9 @@ public class AdvanceCalculator {
     }
 
     public double squareRoot(double numberToSquareRoot) {
+
         double resultOfSquareRoot = Math.sqrt(numberToSquareRoot);
         return resultOfSquareRoot;
     }
+
 }
