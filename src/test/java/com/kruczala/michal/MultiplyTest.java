@@ -77,11 +77,11 @@ public class MultiplyTest {
     }
 
     @Test
-    public void zeromultiplyBy() {
+    public void zeroMultiplyByZero() {
         int zero = 0;
         int secondNumber = 800;
         double result = advanceCalculator.multiply(zero, secondNumber);
-        Assertions.assertEquals(0, result, "Wrong result in method multiplyIntByZero");
+        Assertions.assertEquals(0, result, "Wrong result in method zeroMultiplyByZero");
     }
 
     @Test

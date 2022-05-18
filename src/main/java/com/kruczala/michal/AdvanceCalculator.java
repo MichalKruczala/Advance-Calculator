@@ -1,6 +1,6 @@
 package com.kruczala.michal;
 
-import com.kruczala.michal.exceptions.DivideByZeroIsWrongException;
+import com.kruczala.michal.exceptions.ApplicationException;
 
 public class AdvanceCalculator {
     public double multiply(double firstNumber, int secondNumber) {
@@ -18,15 +18,27 @@ public class AdvanceCalculator {
         return "good luck!! You are Genius";
     }
 
-    public int divide(int firstNumber, int secondNumber) {
+    public int divide(int firstNumber, int secondNumber) throws ApplicationException {
+        if (secondNumber == 0){
+            throw new ApplicationException("Dividing by zero is wrong!");
+        }
 
         return firstNumber / secondNumber;
     }
 
-    public double squareRoot(double numberToSquareRoot) {
-
+    public double squareRoot(double numberToSquareRoot) throws ApplicationException {
         double resultOfSquareRoot = Math.sqrt(numberToSquareRoot);
+
+
+        if (numberToSquareRoot < 0) {
+            throw new ApplicationException("You can't square root by negative number");
+        }
+
         return resultOfSquareRoot;
     }
 
+    public double power(double firstNumber, double secondNumber) {
+        return Math.pow(firstNumber, secondNumber);
+    }
 }
+

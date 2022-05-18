@@ -1,6 +1,6 @@
 package com.kruczala.michal;
 
-import com.kruczala.michal.exceptions.DivideByZeroIsWrongException;
+import com.kruczala.michal.exceptions.ApplicationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 public class DivideTest {
 
     @Test
-    public void divideByPositiveNumber() {
+    public void divideByPositiveNumber() throws ApplicationException {
         AdvanceCalculator advancedCalculator = new AdvanceCalculator();
         int firstNumber = 6;
         int secondNumber = 3;
@@ -23,7 +23,7 @@ public class DivideTest {
     }
 
     @Test
-    public void divideByNegativeNumber() {
+    public void divideByNegativeNumber() throws ApplicationException {
         AdvanceCalculator advancedCalculator = new AdvanceCalculator();
         int firstNumber = 6;
         int secondNumber = -3;
@@ -33,19 +33,19 @@ public class DivideTest {
     }
 
     @Test
-    public void divideByZero() throws DivideByZeroIsWrongException {
+    public void divideByZero() throws ApplicationException {
         AdvanceCalculator advancedCalculator = new AdvanceCalculator();
         int firstNumber = 6;
         int secondNumber = 0;
         double resultOfDivide = advancedCalculator.divide(firstNumber,secondNumber);
         Assertions.assertEquals(Double.NaN,resultOfDivide);
-        throw new DivideByZeroIsWrongException();
+        throw new ApplicationException("Dividing by zero is wrong!");
         // jakby to zrobić Zeby test przechodził?
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1:1:1", "2:2:1"}, delimiter = ':')
-    public void parameterizedDivideTest(String firstNumber, String secondNumber, String expectedValue) {
+    public void parameterizedDivideTest(String firstNumber, String secondNumber, String expectedValue) throws ApplicationException {
         int first = Integer.valueOf(firstNumber);
         int second = Integer.valueOf(secondNumber);
         int expected = Integer.valueOf(expectedValue);
@@ -57,7 +57,7 @@ public class DivideTest {
 
     @ParameterizedTest
     @MethodSource("methodSourceForDivide")
-    public void parameterizetDivideWithMethodSourceTest(int firstNumber, int secondNumber, int expectedValue){
+    public void parameterizetDivideWithMethodSourceTest(int firstNumber, int secondNumber, int expectedValue) throws ApplicationException {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         int result = advanceCalculator.divide(firstNumber, secondNumber);
         Assertions.assertEquals(expectedValue, result);
