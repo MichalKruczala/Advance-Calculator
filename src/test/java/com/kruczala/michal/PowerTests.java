@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class PowerTests {
     @ParameterizedTest
     @MethodSource("methodSourceForPower")
-    public void parameterizetPowerWithMethodSourceTest(double firstNumber, double secondNumber, double expectedValue) {
+    public void parameterizedPowerWithMethodSourceTest(double firstNumber, double secondNumber, double expectedValue) {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         double result = advanceCalculator.power(firstNumber, secondNumber);
         Assertions.assertEquals(expectedValue, result);
@@ -34,21 +34,31 @@ public class PowerTests {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         double secondNumber = 6;
         double zero = 0;
-        double result = advanceCalculator.power(zero,secondNumber);
+        double result = advanceCalculator.power(zero, secondNumber);
         Assertions.assertEquals(0, result);
 
 
     }
+
     @Test
     public void powerZeroToZero() {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         double secondNumber = 0;
         double zero = 0;
-        double result = advanceCalculator.power(zero,secondNumber);
+        double result = advanceCalculator.power(zero, secondNumber);
         Assertions.assertEquals(1, result);
 
 
     }
 
+    @Test
+    public void powerToString() {
+        AdvanceCalculator advanceCalculator = new AdvanceCalculator();
+        double secondNumber = 0;
+        String word = "jolo";
+        String result = advanceCalculator.power(word, secondNumber);
+        Assertions.assertEquals("nie używaj stingów", result);
 
+
+    }
 }

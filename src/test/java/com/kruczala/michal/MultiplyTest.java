@@ -8,12 +8,9 @@ public class MultiplyTest {
 
     @Test
     public void multiplyDoubleByZero() {
-        //dane wejsciowe do testu
         double firstNumber = 5;
         int zero = 0;
-        // uruchomienie aplikacji
         double result = advanceCalculator.multiply(firstNumber, zero);
-        // sprawdzenie wynik
         Assertions.assertEquals(0, result, "Wrong result in method multiplyDoubleByZero");
     }
 
@@ -73,7 +70,7 @@ public class MultiplyTest {
         int firstNumber = 8;
         Float maxFloat = Float.MAX_VALUE;
         double result = advanceCalculator.multiply(firstNumber, maxFloat);
-        Assertions.assertEquals(1500100900, result, "Wrong result in method multiplyIntByZero");
+        Assertions.assertEquals(firstNumber * maxFloat, result, "Wrong result in method multiplyIntByZero");
     }
 
     @Test

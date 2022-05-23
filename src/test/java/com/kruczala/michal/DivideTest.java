@@ -39,7 +39,6 @@ public class DivideTest {
         int secondNumber = 0;
         double resultOfDivide = advancedCalculator.divide(firstNumber,secondNumber);
         Assertions.assertEquals(Double.NaN,resultOfDivide);
-        throw new ApplicationException("Dividing by zero is wrong!");
         // jakby to zrobić Zeby test przechodził?
     }
 
