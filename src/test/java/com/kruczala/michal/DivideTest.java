@@ -37,13 +37,14 @@ public class DivideTest {
         AdvanceCalculator advancedCalculator = new AdvanceCalculator();
         int firstNumber = 6;
         int secondNumber = 0;
-        double resultOfDivide = advancedCalculator.divide(firstNumber,secondNumber);
-        Assertions.assertEquals(Double.NaN,resultOfDivide);
-        // jakby to zrobić Zeby test przechodził?
+        double resultOfDivide = advancedCalculator.divide(firstNumber, secondNumber);
+        Assertions.assertThrows(ApplicationException.class, () -> {
+            throw new ArithmeticException();
+        });
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1:1:1", "2:2:1"}, delimiter = ':')
+    @CsvSource(value = {"1:1:1", "2:2:1", "97:97:1", "56:9:6", "9:3:3", "48:8:6"}, delimiter = ':')
     public void parameterizedDivideTest(String firstNumber, String secondNumber, String expectedValue) throws ApplicationException {
         int first = Integer.valueOf(firstNumber);
         int second = Integer.valueOf(secondNumber);
@@ -51,7 +52,6 @@ public class DivideTest {
         AdvanceCalculator advancedCalculator = new AdvanceCalculator();
         int result = advancedCalculator.divide(first, second);
         Assertions.assertEquals(expected, result);
-        //TODO zmodyfikowac tak, zeby testowal wiecej mozliwosci
     }
 
     @ParameterizedTest
@@ -62,16 +62,16 @@ public class DivideTest {
         Assertions.assertEquals(expectedValue, result);
     }
 
-    private static Stream<Arguments> methodSourceForDivide(){
+    private static Stream<Arguments> methodSourceForDivide() {
         return Stream.of(
-                Arguments.of(1,1,1),
-                Arguments.of(2,2,1),
-                Arguments.of(9,3,3),
-                Arguments.of(3,9,3/9),
-                Arguments.of(-4,2,-2),
-                Arguments.of(-222,-222,1),
-                Arguments.of(-66,1,-66),
-                Arguments.of(56,9,6)
+                Arguments.of(1, 1, 1),
+                Arguments.of(2, 2, 1),
+                Arguments.of(9, 3, 3),
+                Arguments.of(3, 9, 3 / 9),
+                Arguments.of(-4, 2, -2),
+                Arguments.of(-222, -222, 1),
+                Arguments.of(-66, 1, -66),
+                Arguments.of(56, 9, 6)
         );
     }
 

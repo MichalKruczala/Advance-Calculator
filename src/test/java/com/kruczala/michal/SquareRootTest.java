@@ -36,13 +36,16 @@ public class SquareRootTest {
     }
 
 //    @Test
-//    public double squareRootByString() throws SquareRootByStringIsWrong {
-//        AdvanceCalculator advanceCalculator =new AdvanceCalculator();
-//        //advanceCalculator.squareRoot();
+//    public void squareRootByString() throws ApplicationException {
+//        ApplicationException thrown = Assertions.assertThrows(ApplicationException.class, () -> {
+//        AdvanceCalculator advanceCalculator = new AdvanceCalculator();
 //        String word = "ble ble";
+//        advanceCalculator.squareRoot(Double.parseDouble(word));
+//        });
 //
-//        throw new squareRootByStringIsWrong(word);
-//        //mam dostarczyć double a przetestować mam Stringa,jak tnapisac ten test?
-//
+//        Assertions.assertEquals("String is not required tupe of data", thrown.getMessage());
+        //mam dostarczyć double a przetestować mam Stringa,jak tnapisac ten test?
 
+
+    }
 }

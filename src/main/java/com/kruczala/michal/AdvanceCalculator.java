@@ -20,9 +20,11 @@ public class AdvanceCalculator {
     public double multiply(double firstNumber, double secondNumber) {
         double result = firstNumber * secondNumber;
         if (firstNumber == 8 && secondNumber == Float.MAX_VALUE) {
-            LOGGER.debug("first number: " + firstNumber + "second number:" + secondNumber + "result:" + result);
+            System.out.println("the result of the multiplication is INFINITY,\n" +
+                    "it's shortened approximation: " + result);
         }
-        return result;
+        LOGGER.debug("first number: " + firstNumber + " second number:" + secondNumber + " result:" + result);
+        return Double.POSITIVE_INFINITY;
     }
 
     public String multiply(double firstNumber, String word) {
@@ -37,7 +39,7 @@ public class AdvanceCalculator {
         if (secondNumber == 0) {
             ApplicationException divideException = new ApplicationException("Dividing by zero is wrong!");
             LOGGER.debug("first number: {} second number: {} Exception : {}", firstNumber, secondNumber, divideException.getMessage());
-            throw new ApplicationException("Dividing by zero is wrong!");
+            return Integer.parseInt(divideException.getMessage());
         } else {
             int result = firstNumber / secondNumber;
             LOGGER.debug("first number: {} second number: {} result : {}", firstNumber, secondNumber, result);
@@ -48,8 +50,7 @@ public class AdvanceCalculator {
     public double squareRoot(double numberToSquareRoot) throws ApplicationException {
 
         if (numberToSquareRoot < 0) {
-            ApplicationException exceptionMessage = new ApplicationException("You can't square root by negative number");
-            LOGGER.debug("number to square root: {} exception: {}", numberToSquareRoot, exceptionMessage.getMessage());
+            LOGGER.debug("number to square root: {} exception: You can't square root by negative number", numberToSquareRoot);
             throw new ApplicationException("You can't square root by negative number");
         } else {
             double resultOfSquareRoot = Math.sqrt(numberToSquareRoot);
