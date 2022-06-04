@@ -1,12 +1,12 @@
 package com.kruczala.michal;
 
-import com.kruczala.michal.exceptions.SquareRootByStringIsWrong;
+import com.kruczala.michal.exceptions.ApplicationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SquareRootTest {
     @Test
-    public void SquareRootByPositiveNumber() {
+    public void squareRootByPositiveNumber() throws ApplicationException {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         double numberToSquareRoot = 9;
         double resultOfSquareRoot = advanceCalculator.squareRoot(numberToSquareRoot);
@@ -15,7 +15,7 @@ public class SquareRootTest {
     }
 
     @Test
-    public void SquareRootByZero() {
+    public void squareRootByZero() throws ApplicationException {
         AdvanceCalculator advanceCalculator = new AdvanceCalculator();
         double numberToSquareRoot = 0;
         double resultOfSquareRoot = advanceCalculator.squareRoot(numberToSquareRoot);
@@ -24,21 +24,26 @@ public class SquareRootTest {
     }
 
     @Test
-    public void SquareRootByNegativeNumber() {
-        AdvanceCalculator advanceCalculator = new AdvanceCalculator();
-        double numberToSquareRoot = -9;
-        advanceCalculator.squareRoot(numberToSquareRoot);
-        throw new IllegalArgumentException("Square Root from negative number does not exist");
-        // nie przechodzi mi ten test dalej...:
+    void squareRootByNegativeNumber() {
+
+        ApplicationException thrown = Assertions.assertThrows(ApplicationException.class, () -> {
+            AdvanceCalculator advanceCalculator = new AdvanceCalculator();
+            double numberToSquareRoot = -9;
+            advanceCalculator.squareRoot(numberToSquareRoot);
+        });
+
+        Assertions.assertEquals("You can't square root by negative number", thrown.getMessage());
     }
 
-    @Test
-    public double SquareRootByString() throws SquareRootByStringIsWrong {
-        AdvanceCalculator advanceCalculator =new AdvanceCalculator();
-        //advanceCalculator.squareRoot();
-        String word = "ble ble";
-
-        throw new SquareRootByStringIsWrong(word);
+//    @Test
+//    public void squareRootByString() throws ApplicationException {
+//        ApplicationException thrown = Assertions.assertThrows(ApplicationException.class, () -> {
+//        AdvanceCalculator advanceCalculator = new AdvanceCalculator();
+//        String word = "ble ble";
+//        advanceCalculator.squareRoot(Double.parseDouble(word));
+//        });
+//
+//        Assertions.assertEquals("String is not required tupe of data", thrown.getMessage());
         //mam dostarczyć double a przetestować mam Stringa,jak tnapisac ten test?
 
 
