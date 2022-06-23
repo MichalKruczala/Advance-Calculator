@@ -39,7 +39,7 @@ public class AdvanceCalculator {
         if (secondNumber == 0) {
             ApplicationException divideException = new ApplicationException("Dividing by zero is wrong!");
             LOGGER.debug("first number: {} second number: {} Exception : {}", firstNumber, secondNumber, divideException.getMessage());
-            return Integer.parseInt(divideException.getMessage());
+           throw divideException;
         } else {
             int result = firstNumber / secondNumber;
             LOGGER.debug("first number: {} second number: {} result : {}", firstNumber, secondNumber, result);
@@ -70,6 +70,10 @@ public class AdvanceCalculator {
         ApplicationException exceptionMessage = new ApplicationException("nie używaj stingów");
         LOGGER.debug("Used word: {} second number: {} result: {}", word, secondNumber, exceptionMessage.getMessage());
         return exceptionMessage.getMessage();
+    }
+
+    public void squareRoot(String word) throws ApplicationException {
+        throw  new ApplicationException("String is not required type of data");
     }
 }
 

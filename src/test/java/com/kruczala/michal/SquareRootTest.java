@@ -35,16 +35,16 @@ public class SquareRootTest {
         Assertions.assertEquals("You can't square root by negative number", thrown.getMessage());
     }
 
-//    @Test
-//    public void squareRootByString() throws ApplicationException {
-//        ApplicationException thrown = Assertions.assertThrows(ApplicationException.class, () -> {
-//        AdvanceCalculator advanceCalculator = new AdvanceCalculator();
-//        String word = "ble ble";
-//        advanceCalculator.squareRoot(Double.parseDouble(word));
-//        });
-//
-//        Assertions.assertEquals("String is not required tupe of data", thrown.getMessage());
-        //mam dostarczyć double a przetestować mam Stringa,jak tnapisac ten test?
+    @Test
+    public void squareRootByString() throws ApplicationException {
+        ApplicationException thrown = Assertions.assertThrows(ApplicationException.class, () -> {
+        AdvanceCalculator advanceCalculator = new AdvanceCalculator();
+        String word = "ble ble";
+        advanceCalculator.squareRoot(word);
+        });
+
+        Assertions.assertEquals("String is not required type of data", thrown.getMessage());
+
 
 
     }
