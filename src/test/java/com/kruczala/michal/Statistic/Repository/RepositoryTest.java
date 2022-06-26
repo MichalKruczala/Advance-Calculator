@@ -89,6 +89,7 @@ public class RepositoryTest {
 
         FileWriter fw = new FileWriter(file);
         fw.write(List.toString());
+        fw.close();
 
         RepositoryApplication repositoryApplication = new RepositoryApplication();
         String repositoryResult = repositoryApplication.searchAll();
