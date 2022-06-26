@@ -1,17 +1,15 @@
 package com.kruczala.michal.Statistic.Repository;
 
 import com.kruczala.michal.advancecalculator.statistic.RepositoryApplication;
-import com.kruczala.michal.exceptions.NoRepositoryException;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
-import java.util.Formatter;
-import java.util.List;
 import java.util.Scanner;
 
 public class RepositoryTest {
@@ -42,9 +40,10 @@ public class RepositoryTest {
     }
 
     @SneakyThrows
-    private void prepareEmptyRepository() {
+    private File prepareEmptyRepository() {
         File file = new File("D://Repositories/RepositoryAdvanceCalculator.mkr");
         file.createNewFile();
+        return file;
 
     }
 
@@ -54,32 +53,58 @@ public class RepositoryTest {
         prepareFifteenRepository();
 
         RepositoryApplication repositoryApplication = new RepositoryApplication();
-        String repositoryResult = repositoryApplication.searchAll();
-        Assertions.assertEquals(repositoryResult.length(), 15);
+        ArrayList<Object> repositoryResult = repositoryApplication.searchAll();
+        Assertions.assertEquals(repositoryResult.size(), prepareFifteenRepository());
     }
-    private void prepareFifteenRepository() throws IOException {  //file.createNewFile();
-        File repositoryResult = new File("D://Repositories/RepositoryAdvanceCalculator.mkr");
 
-        FileWriter fw = new FileWriter(repositoryResult);
-        Formatter fm = new Formatter(fw);
+    private File prepareFifteenRepository() throws IOException {
+        File file = new File("D://Repositories/RepositoryAdvanceCalculator.mkr");
+        file.createNewFile();
 
-        for (int i = 1; i < 16; i++) {
-            fm.format("%s", 1);
+        HistoryEntryTest history1 = new HistoryEntryTest("2022-06-24", 6, 7, 42);
+        ArrayList<HistoryEntryTest> List = new ArrayList<>();
+
+        for (int i = 0; i < 16; i++) {
+            List.add(history1);
         }
-        fm.close();
+
+        FileWriter fw = new FileWriter(file);
+        fw.write(String.valueOf(List));
         fw.close();
-        repositoryResult.deleteOnExit();
+        return file;
+    }
+
+    @Test
+    public void CleanRepository() throws IOException {
+
+        File file = new File("D://Repositories/RepositoryAdvanceCalculator.mkr");
+        file.createNewFile();
+
+        ArrayList<HistoryEntryTest> List = new ArrayList<>();
+        HistoryEntryTest history1 = new HistoryEntryTest("2022-06-24", 6, 7, 42);
+
+
+        List.add(history1);
+        List.remove(history1);
+
+        FileWriter fw = new FileWriter(file);
+        fw.write(List.toString());
+
+        RepositoryApplication repositoryApplication = new RepositoryApplication();
+        String repositoryResult = repositoryApplication.searchAll();
+       Assertions.assertEquals(repositoryResult,file);
+
 
     }
+
     @Test
     public void readFromEmptyRepository() throws IOException {
         RepositoryApplication repositoryApplication = new RepositoryApplication();
         String repositoryResult = repositoryApplication.searchAll();
-        File plik = new File("D://Repositories/RepositoryAdvanceCalculator.mkr");
-        Scanner read = new Scanner("D://Repositories/RepositoryAdvanceCalculator.mkr");
+        prepareEmptyRepository();
+        Scanner read = new Scanner(prepareEmptyRepository());
         String text = read.nextLine();
-        Assertions.assertEquals(text,repositoryResult);
-        plik.deleteOnExit();
+        Assertions.assertEquals(text, repositoryResult);
 
     }
 
